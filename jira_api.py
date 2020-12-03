@@ -14,12 +14,10 @@ class JiraApi:
         self.url = None
         jira_info_stream = open('jira_info.yaml', 'r')
         jira_info = yaml.load(jira_info_stream, Loader=yaml.SafeLoader)
-        default_option_stream = open('default_options.yaml', 'r')
-        default_options = yaml.load(default_option_stream, Loader=yaml.SafeLoader)
         self.url = jira_info['jira_url']
         self.token = jira_info['token']
         self.user_id = jira_info['user_id']
-        self.default_options = default_options
+        self.headers = jira_info['headers']
         self.session = requests.Session()
         self.session.auth = HTTPBasicAuth(self.user_id, self.token)
 
@@ -37,7 +35,7 @@ class JiraApi:
         issue_url = r'rest/api/2/issue/'
         issue_input_stream = open('issue_input.yaml', 'r')
         issue_info = yaml.load(issue_input_stream, Loader=yaml.SafeLoader)
-        header_json = self.default_options['headers']
+        header_json = self.headers
         if not issue_id:
             issue_response = self.session.post(self.url + issue_url, headers=header_json, json=issue_info)
         else:
