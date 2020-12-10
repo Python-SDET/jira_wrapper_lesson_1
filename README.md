@@ -1,5 +1,5 @@
 # jira_wrapper_lesson_1
-This is a tutorial repository associated with the following YouTube video:
+This is a tutorial repository associated with the following YouTube video: https://www.youtube.com/watch?v=eWR49de-RrA
 
 1) Look at draw.io layer illustration
 2) Put endpoint url, credentials and header data in yaml file
